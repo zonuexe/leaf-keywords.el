@@ -161,6 +161,8 @@
    :chord*     (progn
                  (leaf-register-autoload (cadr leaf--value) leaf--name)
                  `((leaf-key-chords* ,(car leaf--value)) ,@leaf--body))
+   :borg       `((borg-activate ,(if (stringp (car leaf--value)) (car leaf--value) (symbol-name leaf--name)))
+                 ,@leaf--body)
    :mode-hook  `(,@(mapcar (lambda (elm) `(leaf-keywords-handler-mode-hook ,leaf--name ,(car elm) ,@(cadr elm))) leaf--value) ,@leaf--body))
   "Additional `leaf-keywords' before wait loading.
 :after ... <this place> :require"

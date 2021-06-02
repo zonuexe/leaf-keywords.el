@@ -36,6 +36,7 @@
   - [[#delight-keyword][:delight keyword]]
 - [[#misc-keywords][Misc keywords]]
   - [[#grugru-keyword][:grugru keyword]]
+  - [[#borg-keyword][:borg keyword]]
   - [[#defaults-keyword][:defaults keyword]]
 - [[#information][Information]]
   - [[#donation][Donation]]
@@ -2042,6 +2043,21 @@ these rules, you cannot omit target =major-mode=.
            (symbol "sin" "cos" "tan"))
           (gnuplot-mode
            (symbol "log" "log10")))))))
+#+end_src
+
+** :borg keyword
+~:borg~ keyword provide frontend for [[https://github.com/emacscollective/borg][borg]].
+
+To load the not assimilated clone package in borg must be enabled with =borg-activate=.
+
+#+begin_src emacs-lisp
+(cort-deftest-with-macroexpand leaf/borg
+  '(;; Case where leaf-name and borg clone are the same
+    ((leaf smartchr :borg t)
+     (prog1 'smartchr (borg-activate "smartchr")))
+    ;; Case where leaf-name and borg clone are different
+    ((leaf smartchr :borg "xxxxx")
+     (prog1 'foo (borg-activate "xxxxx")))))
 #+end_src
 
 ** :defaults keyword

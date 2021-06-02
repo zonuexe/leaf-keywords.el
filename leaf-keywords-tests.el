@@ -1115,6 +1115,14 @@ Example
         (emacs-lisp-mode (word "add" "remove"))
         (lisp-mode (symbol "nil" "t")))))))
 
+(cort-deftest-with-macroexpand leaf/borg
+  '(;; Case where leaf-name and borg clone are the same
+    ((leaf smartchr :borg t)
+     (prog1 'smartchr (borg-activate "smartchr")))
+    ;; Case where leaf-name and borg clone are different
+    ((leaf smartchr :borg "xxxxx")
+     (prog1 'foo (borg-activate "xxxxx")))))
+
 (cort-deftest-with-macroexpand leaf/mode-hook
   '((;; you can place sexp(s) like :config
      (leaf cc-mode
